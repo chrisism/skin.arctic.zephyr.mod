@@ -34,8 +34,6 @@ variables:
   isPR: ${{startsWith(variables['Build.SourceBranch'], 'refs/pull/')}}
   workingDirectory: '$(Build.SourcesDirectory)'
   packerToolPath: '$(workingDirectory)/.build/tools/kodi-texturepacker/linux/TexturePacker'
-  packerSrc: '$(workingDirectory)/media/'
-  packerDest: '$(workingDirectory)/media/Textures.xbt'
   addonName: skin.arctic.zephyr.mod
 
 stages:
@@ -88,27 +86,32 @@ stages:
           RegEx: 'version="\d+\.\d+\.\d+.*" provider'
           ValueToReplace: 'version="$(addonVersion)" provider'
           
-      #- script: |
-      #      $(packerToolPath) -dupecheck -input $(packerSrc) -output $(packerDest)
-      #  displayName: 'Run texturepacker'
+      - script: |
+            $(packerToolPath) -dupecheck -input media/ -output media/Textures.xbt
+        workingDirectory: $(workingDirectory)
+        displayName: 'Run texturepacker for media'
+        
+      - script: |
+            $(packerToolPath) -dupecheck -input themes/ -output media/Square.xbt
+        workingDirectory: $(workingDirectory)
+        displayName: 'Run texturepacker for Square theme'
 
       - task: CopyFiles@2
         displayName: 'Copy addon files for package'
         inputs:
           SourceFolder: ''
           Contents: |
-              **/*.md
-              **/*.xml
-              **/*.txt
-              **/*.jpg
-              **/*.png
-              **/*.po
-              **/*.ttf
-              **/*.xsp
-              **/*.mp4
-              **/*.xbt
+              **/*.*
+              !media/**/*.jpg
+              !media/**/*.png
+              !media/**/*.gif
+              !themes/**/*.*
               !requirements.txt
               !.build/**/*.*
+              !.git/**/*.*
+              !.vscode/**/*.*
+              !.venv/**/*.*
+              !.github/**/*.*
           TargetFolder: '$(build.artifactstagingdirectory)/$(addonName)/'
           CleanTargetFolder: true
           flattenFolders: false
