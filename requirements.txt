@@ -1,2 +1,2 @@
-kodi.tools==1.2.0rc2
+kodi.tools==1.2.0rc3
 kodi-addon-checker==0.0.26
