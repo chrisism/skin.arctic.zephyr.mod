@@ -46,6 +46,9 @@ stages:
         clean: all 
         
       steps:
+      - checkout: self
+        submodules: true
+
       - task: gitversion/setup@0
         displayName: 'Install GitTools'
         inputs:
