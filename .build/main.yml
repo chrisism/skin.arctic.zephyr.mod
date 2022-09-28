@@ -86,8 +86,8 @@ stages:
         displayName: 'Set addon version'
         inputs:
           PathToFile: 'addon.xml'
-          RegEx: 'version="\d+\.\d+\.\d+.*" provider'
-          ValueToReplace: 'version="$(addonVersion)" provider'
+          RegEx: 'version="\d+\.\d+\.\d+.*" name'
+          ValueToReplace: 'version="$(addonVersion)" name'
           
       - script: |
             $(packerToolPath) -dupecheck -input media/ -output media/Textures.xbt
