@@ -49,6 +49,7 @@
     <include file="View_522_Minimal_V2_Episodes.xml"/>
     <include file="View_524_Minimal_V2_Seasons.xml"/>
     <include file="View_527_List_V2.xml"/>
+    <include file="View_528_Logos.xml"/>
     <include file="Includes_Furniture.xml"/>
     <include file="Includes_Home.xml"/>
     <include file="Includes_Labels.xml"/>
@@ -4975,4 +4976,8 @@
         </control>
         </definition>
     </include>
+    
+    <variable name="AutoCompletionPath">
+        <value condition="System.AddonIsEnabled(plugin.program.autocompletion)">plugin://plugin.program.autocompletion?info=autocomplete&amp;&amp;id=$INFO[Control.GetLabel(312).index(1)]&amp;&amp;limit=9</value>
+    </variable>
 </includes>
