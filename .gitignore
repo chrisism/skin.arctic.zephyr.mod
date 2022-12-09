@@ -1,6 +1,6 @@
 1080i/script-skinshortcuts-includes.xml
-.build
 .venv
 .vscode
+.build
 media/Square.xbt
 media/Textures.xbt
