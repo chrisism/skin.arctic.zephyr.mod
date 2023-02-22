@@ -155,7 +155,7 @@
         <value condition="Skin.HasSetting(hide.markers)"></value>
         <value condition="ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)">[COLOR=WatchedIcons]&#62811;[/COLOR]</value>
         <value condition="ListItem.IsResumable + Skin.HasSetting(hide.markers.inprogress)"></value>
-        <value condition="ListItem.IsResumable">&#62596;</value>
+        <value condition="ListItem.IsResumable | $EXP[IsTVShowInProgress]">&#62596;</value>
         <value condition="String.IsEqual(ListItem.Overlay,OverlayWatched.png) + Skin.HasSetting(hide.markers.watched)"></value>
         <value condition="String.IsEqual(ListItem.Overlay,OverlayWatched.png)">[COLOR=FF00DD44]&#10003;[/COLOR]</value>
         <value condition="String.IsEqual(ListItem.Overlay,OverlayUnwatched.png) + [$EXP[IsNewMovie] | $EXP[IsNewTVShow] | $EXP[IsNewEpisode]] + !Skin.HasSetting(hide.markers.newcontent)">[COLOR=ColoredIcons]&#62079;[/COLOR]</value>
@@ -165,6 +165,7 @@
         <value condition="Skin.HasSetting(hide.markers) | [ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)]"></value>
         <value condition="ListItem.IsResumable + Skin.HasSetting(hide.markers.inprogress)"></value>
         <value condition="ListItem.IsResumable">$VAR[IndicatorFlagLabelIsResumable]</value>
+        <value condition="$EXP[IsTVShowInProgress]">$VAR[IndicatorFlagLabelIsTVShowInProgress]</value>
         <value condition="String.IsEqual(ListItem.Overlay,OverlayWatched.png) + Skin.HasSetting(hide.markers.watched)"></value>
         <value condition="String.IsEqual(ListItem.Overlay,OverlayWatched.png)">$LOCALIZE[31493]</value>
         <value condition="String.IsEqual(ListItem.Overlay,OverlayUnwatched.png) + [$EXP[IsNewMovie] | $EXP[IsNewTVShow] | $EXP[IsNewEpisode]] + !Skin.HasSetting(hide.markers.newcontent)">$LOCALIZE[31494]</value>
@@ -175,11 +176,16 @@
         <value>$LOCALIZE[31492]</value>
     </variable>
     
+    <variable name="IndicatorFlagLabelIsTVShowInProgress">
+        <value condition="Skin.HasSetting(markers.inprogress.percentage) + !String.IsEmpty(ListItem.Property(WatchedEpisodePercent)">$INFO[ListItem.Property(WatchedEpisodePercent),,%]</value>
+        <value>$INFO[ListItem.Property(WatchedEpisodes)]/$INFO[ListItem.Property(TotalEpisodes)]</value>
+    </variable>
+    
     <variable name="WatchedLabelPoster301">
         <value condition="Skin.HasSetting(hide.markers)"></value>
         <value condition="Container(301).ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)">[COLOR=WatchedIcons]&#62811;[/COLOR]</value>
         <value condition="Container(301).ListItem.IsResumable + Skin.HasSetting(hide.markers.inprogress)"></value>
-        <value condition="Container(301).ListItem.IsResumable">&#62596;</value>
+        <value condition="Container(301).ListItem.IsResumable | $EXP[IsTVShowInProgress301]">&#62596;</value>
         <value condition="String.IsEqual(Container(301).ListItem.Overlay,OverlayWatched.png) + Skin.HasSetting(hide.markers.watched)"></value>
         <value condition="String.IsEqual(Container(301).ListItem.Overlay,OverlayWatched.png)">[COLOR=FF00DD44]&#10003;[/COLOR]</value>
         <value condition="String.IsEqual(Container(301).ListItem.Overlay,OverlayUnwatched.png) + [$EXP[IsNewMovie301] | $EXP[IsNewTVShow301] | $EXP[IsNewEpisode301]] + !Skin.HasSetting(hide.markers.newcontent)">[COLOR=ColoredIcons]&#62079;[/COLOR]</value>
@@ -189,6 +195,7 @@
         <value condition="Skin.HasSetting(hide.markers) | [Container(301).ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)]"></value>
         <value condition="Container(301).ListItem.IsResumable + Skin.HasSetting(hide.markers.inprogress)"></value>
         <value condition="Container(301).ListItem.IsResumable">$VAR[IndicatorFlagLabelIsResumable301]</value>
+        <value condition="$EXP[IsTVShowInProgress301]">$VAR[IndicatorFlagLabelIsTVShowInProgress301]</value>
         <value condition="String.IsEqual(Container(301).ListItem.Overlay,OverlayWatched.png) + Skin.HasSetting(hide.markers.watched)"></value>
         <value condition="String.IsEqual(Container(301).ListItem.Overlay,OverlayWatched.png)">$LOCALIZE[31493]</value>
         <value condition="String.IsEqual(Container(301).ListItem.Overlay,OverlayUnwatched.png) + [$EXP[IsNewMovie301] | $EXP[IsNewTVShow301] | $EXP[IsNewEpisode301]] + !Skin.HasSetting(hide.markers.newcontent)">$LOCALIZE[31494]</value>
@@ -197,6 +204,11 @@
     <variable name="IndicatorFlagLabelIsResumable301">
         <value condition="Skin.HasSetting(markers.inprogress.percentage) + !String.IsEmpty(Container(301).ListItem.PercentPlayed)">$INFO[Container(301).ListItem.PercentPlayed,,%]</value>
         <value>$LOCALIZE[31492]</value>
+    </variable>
+    
+    <variable name="IndicatorFlagLabelIsTVShowInProgress301">
+        <value condition="Skin.HasSetting(markers.inprogress.percentage) + !String.IsEmpty(Container(301).ListItem.Property(WatchedEpisodePercent)">$INFO[Container(301).ListItem.Property(WatchedEpisodePercent),,%]</value>
+        <value>$INFO[Container(301).ListItem.Property(WatchedEpisodes)]/$INFO[Container(301).ListItem.Property(TotalEpisodes)]</value>
     </variable>
 
     <variable name="WatchedLabelPosterColor">
@@ -207,7 +219,7 @@
         <value condition="Skin.HasSetting(hide.markers)"></value>
         <value condition="ListItem.IsPlaying + !Skin.HasSetting(hide.markers.isplaying)">&#62811;</value>
         <value condition="ListItem.IsResumable + Skin.HasSetting(hide.markers.inprogress)"></value>
-        <value condition="ListItem.IsResumable">&#62596;</value>
+        <value condition="ListItem.IsResumable | $EXP[IsTVShowInProgress]">&#62596;</value>
         <value condition="String.IsEqual(ListItem.Overlay,OverlayWatched.png) + Skin.HasSetting(hide.markers.watched)"></value>
         <value condition="String.IsEqual(ListItem.Overlay,OverlayWatched.png)">[COLOR=FF00DD44]&#10003;[/COLOR]</value>
         <value condition="String.IsEqual(ListItem.Overlay,OverlayUnwatched.png) + [$EXP[IsNewMovie] | $EXP[IsNewTVShow] | $EXP[IsNewEpisode]] + !Skin.HasSetting(hide.markers.newcontent)">[COLOR=ColoredIcons]&#62079;[/COLOR]</value>
@@ -400,6 +412,11 @@
     <variable name="LabelEpisodeZero">
         <value condition="!Integer.IsGreater(ListItem.Episode,9) + !String.Contains(ListItem.Episode,S) + !String.IsEmpty(ListItem.Episode)">$NUMBER[0]</value>
         <value condition="String.IsEmpty(ListItem.Episode)">$NUMBER[0]$NUMBER[0]</value>
+    </variable>
+
+    <variable name="LabelSeason">
+        <value condition="!String.IsEmpty(ListItem.Season)">$INFO[ListItem.Season]</value>
+        <value condition="String.IsEmpty(ListItem.Season)">$NUMBER[0]</value>
     </variable>
 
     <variable name="LabelDirector">
@@ -693,7 +710,7 @@
         <value condition="Player.Rewinding4x">RW 4x</value>
         <value condition="Player.Rewinding2x">RW 2x</value>
         <value condition="Player.Rewinding">RW</value>
-        <value condition="[Player.Seeking | Player.DisplayAfterSeek] + !String.IsEmpty(Player.SeekOffset)">$LOCALIZE[773]$INFO[Player.SeekOffset, ,]</value>
+        <value condition="[Player.Seeking | Player.HasPerformedSeek(3)] + !String.IsEmpty(Player.SeekOffset)">$LOCALIZE[773]$INFO[Player.SeekOffset, ,]</value>
         <value condition="Player.Seeking + String.IsEmpty(Player.SeekOffset)">$LOCALIZE[773]$INFO[Player.SeekStepSize, ,]</value>
         <value condition="Player.Paused">$LOCALIZE[112]</value>
         <value condition="Player.IsTempo">$LOCALIZE[31281]: $INFO[Player.PlaySpeed]</value>
@@ -722,7 +739,7 @@
         <value condition="Player.Rewinding4x">RW 4x</value>
         <value condition="Player.Rewinding2x">RW 2x</value>
         <value condition="Player.Rewinding">RW</value>
-        <value condition="[Player.Seeking | Player.DisplayAfterSeek] + !String.IsEmpty(Player.SeekOffset)">$LOCALIZE[773]$INFO[Player.SeekOffset, ,]</value>
+        <value condition="[Player.Seeking | Player.HasPerformedSeek(3)] + !String.IsEmpty(Player.SeekOffset)">$LOCALIZE[773]$INFO[Player.SeekOffset, ,]</value>
         <value condition="Player.Seeking + String.IsEmpty(Player.SeekOffset)">$LOCALIZE[773]$INFO[Player.SeekStepSize, ,]</value>
         <value condition="Player.Paused">$LOCALIZE[112]</value>
         <value condition="Player.IsTempo">$LOCALIZE[31281]: $INFO[Player.PlaySpeed]</value>
@@ -1992,6 +2009,11 @@
         <value condition="Control.HasFocus(6) + !String.IsEmpty(Container(6).ListItem.Label)">$INFO[Container(6).ListItem.Label]</value>
         <value condition="String.IsEmpty(Container(6).ListItem.Label)">$LOCALIZE[10005]</value>
         <value>-</value>
+    </variable>
+    
+    <variable name="Label_Music_Duration_50">
+        <value condition="String.IsEqual(Container.SortMethod,$LOCALIZE[567]">$INFO[ListItem.PlayCount]</value>
+        <value>$INFO[ListItem.Duration]</value>
     </variable>
 
     <variable name="Label_InfoDelayInSeconds528">
