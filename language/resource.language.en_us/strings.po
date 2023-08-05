@@ -2593,6 +2593,10 @@ msgctxt "#31705"
 msgid "Small poster fanart"
 msgstr ""
 
+msgctxt "#31706"
+msgid "Use keyart instead of poster"
+msgstr ""
+
 msgctxt "#31707"
 msgid "Rating stars"
 msgstr ""
@@ -2614,6 +2618,13 @@ msgid "Delay in seconds"
 
 msgctxt "#31717"
 msgid "Logos"
+
+msgctxt "#31711"
+msgid "Wikipedia"
+msgstr ""
+
+msgctxt "#31718"
+msgid "Sandy yellow"
 msgstr ""
 
 #~ msgctxt "Addon Summary"
