@@ -383,6 +383,15 @@
                     <onclick>Close</onclick>
                     <enable>!Container.Content(actors)</enable>
                 </control>
+                <control type="button" id="3159">
+                    <include>DefContextButtonGradient</include>
+                    <label>31717</label>
+                    <align>left</align>
+                    <include condition="Skin.HasSetting(enable.forcedviews)">unlock_views</include>
+                    <onclick>Container.SetViewMode(528)</onclick>
+                    <onclick>Close</onclick>
+                    <enable>!Container.Content(actors)</enable>
+                </control>
             </control>
             <control type="group">
                 <left>41</left>
